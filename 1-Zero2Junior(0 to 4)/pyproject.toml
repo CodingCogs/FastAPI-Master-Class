@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fastapi-junior"
+version = "2.0.0"
+description = ""
+authors = ["SoroushMoosapour <s75moosapour@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.0"
+uvicorn = "^0.28.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
