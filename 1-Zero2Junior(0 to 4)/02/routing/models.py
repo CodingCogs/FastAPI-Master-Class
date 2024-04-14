@@ -2,6 +2,6 @@ from pydantic import BaseModel
 from models import Todo
 
 
-class Todo(BaseMode):
+class Todo(BaseModel):
     id: int
     item: str
