@@ -8,8 +8,8 @@ license = "MIT"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.12"
-fastapi = "^0.110.0"
+python = "^3.13"
+fastapi = "^0.115.0"
 uvicorn = "^0.28.0"
 pydantic = {extras = ["email"], version = "^2.7.1"}
 jinja2 = "^3.1.3"
