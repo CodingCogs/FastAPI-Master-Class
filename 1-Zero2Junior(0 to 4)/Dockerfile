@@ -1,4 +1,4 @@
-FROM python:3.12 as builder
+FROM python:3.13-slim as builder
 
 
 ENV PYTHONUNBUFFERED=1 \
@@ -19,7 +19,7 @@ COPY pyproject.toml poetry.lock ./
 
 RUN poetry install --no-root 
 
-FROM python:3.12-alpine as runtime
+FROM python:3.13-slim as runtime
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on
@@ -32,8 +32,6 @@ COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY . .
 
-RUN pip install pydantic_core -t .
-
 EXPOSE 8000
 
-ENTRYPOINT ["uvicorn", "main:app","--host", "0.0.0.0"]
+ENTRYPOINT ["fastapi", "run"]
