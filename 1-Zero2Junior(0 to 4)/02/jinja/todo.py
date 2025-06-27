@@ -9,7 +9,7 @@ todo_list = []
 
 templates = Jinja2Templates(directory="templates/")
 
-
+# new
 @todo_router.post("/todo")
 async def add_todo(request: Request, todo: Todo = Depends(Todo.as_form)):
     todo.id = len(todo_list) + 1
@@ -18,14 +18,14 @@ async def add_todo(request: Request, todo: Todo = Depends(Todo.as_form)):
         "todo.html", {"request": request, "todos": todo_list}
     )
 
-
+# new
 @todo_router.get("/todo", response_model=TodoItems)
 async def retrieve_todo(request: Request):
     return templates.TemplateResponse(
         "todo.html", {"request": request, "todos": todo_list}
     )
 
-
+# new
 @todo_router.get("/todo/{todo_id}")
 async def get_single_todo(
     request: Request, todo_id: int = Path(..., title="The ID of the todo to retrieve.")

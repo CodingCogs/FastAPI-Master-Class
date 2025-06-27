@@ -1,5 +1,3 @@
-from typing import List
-
 from fastapi import APIRouter, Body, HTTPException, status
 from models.events import Event
 
@@ -10,8 +8,8 @@ event_router = APIRouter(
 events = []
 
 
-@event_router.get("/", response_model=List[Event])
-async def retrieve_all_events() -> List[Event]:
+@event_router.get("/", response_model=list[Event])
+async def retrieve_all_events() -> list[Event]:
     return events
 
 

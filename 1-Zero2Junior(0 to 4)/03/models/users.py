@@ -1,12 +1,12 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
-from typing import Optional, List
+from typing import Optional
 from models.events import Event
 
 
 class User(BaseModel):
     email: EmailStr
     password: str
-    events: Optional[List[Event]]
+    events: Optional[list[Event]]
 
     model_config = ConfigDict(
         json_schema_extra={

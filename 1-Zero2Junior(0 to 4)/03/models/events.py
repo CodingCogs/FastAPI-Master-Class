@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic import BaseModel, ConfigDict
 
 
@@ -8,7 +6,7 @@ class Event(BaseModel):
     title: str
     image: str
     description: str
-    tags: List[str]
+    tags: list[str]
     location: str
 
     model_config = ConfigDict(
