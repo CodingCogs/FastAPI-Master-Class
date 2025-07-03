@@ -2,6 +2,7 @@ from fastapi import APIRouter, Body, HTTPException, status, Request,Depends
 from database.connection import Database
 from models.events import Event, EventUpdate
 from beanie import PydanticObjectId
+from auth.authenticate import authenticate
 
 event_router = APIRouter(
     tags=["Events"]
@@ -10,7 +11,8 @@ event_router = APIRouter(
 event_database = Database(Event)
 
 @event_router.post("/new")
-async def create_event(new_event: Event = Body(...)) -> dict:
+async def create_event(new_event: Event = Body(...),user: str = Depends(authenticate)) -> dict:
+    new_event.creator = user
     await event_database.save(new_event)
     return {
         "message": "Event created successfully"
@@ -33,8 +35,16 @@ async def retrieve_event(id: PydanticObjectId,) -> Event:
     )
 
 @event_router.put("/edit/{id}", response_model=Event)
-async def retrieve_event(id: PydanticObjectId,new_event_data: EventUpdate = Body(...)) -> Event:
+async def retrieve_event(id: PydanticObjectId,new_event_data: EventUpdate = Body(...),user: str = Depends(authenticate)) -> Event:
+    event = await event_database.get(id)
+    if event.creator != user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Operation is not allowed"
+        )
+    
     event = await event_database.update(id,new_event_data)
+    
     if event:
         return event
     raise HTTPException(
@@ -45,7 +55,13 @@ async def retrieve_event(id: PydanticObjectId,new_event_data: EventUpdate = Body
 
 
 @event_router.delete("/{id}")
-async def delete_event(id: PydanticObjectId,) -> dict:
+async def delete_event(id: PydanticObjectId,user: str = Depends(authenticate)) -> dict:
+    event = await event_database.get(id)
+    if event.creator != user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Operation is not allowed"
+        )
     event = await event_database.delete(id)
     if event:
         

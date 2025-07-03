@@ -8,6 +8,7 @@ class Event(Document):
     description: str
     tags: list[str]
     location: str
+    creator: Optional[str]
 
     model_config = ConfigDict(
         json_schema_extra={
@@ -17,6 +18,7 @@ class Event(Document):
                 "description": "We will talk about FastAPI Course on CodingCogs website!",
                 "tags": ["python", "fastapi", "course", "launch"],
                 "location": "Google Meet",
+                "creator": ""
             }
         },
     )

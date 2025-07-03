@@ -36,3 +36,7 @@ class UserSignIn(BaseModel):
 
 class NewUser(UserSignIn):
     pass
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
