@@ -26,11 +26,11 @@ class Event(Document):
         name = "events"
 
 class EventUpdate(BaseModel):
-    title: Optional[str]
-    image: Optional[str]
-    description: Optional[str]
-    tags: Optional[list[str]]
-    location: Optional[str]
+    title: Optional[str] | None = None
+    image: Optional[str] | None = None
+    description: Optional[str] | None = None
+    tags: Optional[list[str]] | None = None
+    location: Optional[str] | None = None
 
     model_config = ConfigDict(
         json_schema_extra={

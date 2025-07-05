@@ -14,6 +14,10 @@ class Settings(BaseSettings):
         client = AsyncMongoClient(self.DATABASE_URL)
         await init_beanie(database=client.planner,
                             document_models=[Event,User])
+    async def initialize_test_database(self):
+        client = AsyncMongoClient(self.DATABASE_URL)
+        await init_beanie(database=client.testdb,
+                            document_models=[Event,User])
         
     model_config =SettingsConfigDict(env_file=".env")
     
