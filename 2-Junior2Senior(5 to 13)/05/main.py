@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Optional
+from typing import Optional, List, Dict
 from uuid import UUID, uuid4
 
 from fastapi import FastAPI, Form, Cookie, Header, Response
@@ -76,7 +76,7 @@ class ForumPost(BaseModel):
 class ForumDiscussion(BaseModel):
     id: UUID
     main_post: ForumPost
-    replies: Optional[list[ForumPost]] = None
+    replies: Optional[List[ForumPost]] = None
     author: UserProfile
 
 
@@ -104,7 +104,7 @@ def list_pending_users():
 
 
 @app.delete("/delete/users/pending")
-def delete_pending_users(accounts: list[str] = []):
+def delete_pending_users(accounts: List[str] = []):
     for user in accounts:
         del pending_users[user]
     return {"message": "deleted pending users"}
@@ -128,7 +128,7 @@ def approve_user(user: User):
 
 
 @app.delete("/login/remove/all")
-def delete_users(usernames: list[str]):
+def delete_users(usernames: List[str]):
     for user in usernames:
         del valid_users[user]
     return {"message": "deleted users"}
@@ -281,7 +281,7 @@ def update_profile(username: str, id: UUID, new_profile: UserProfile):
 
 @app.patch("/account/profile/update/names/{username}")
 def update_profile_names(
-    id: UUID, username: str = "", new_names: Optional[dict[str, str]] = None
+    id: UUID, username: str = "", new_names: Optional[Dict[str, str]] = None
 ):
     if valid_users.get(username) == None:
         return {"message": "user does not exist"}
