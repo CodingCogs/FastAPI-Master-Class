@@ -7,11 +7,17 @@ name = "advanced-fastapi"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "dependency-injector" },
     { name = "fastapi", extra = ["all"] },
+    { name = "lagom" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastapi", extras = ["all"], specifier = ">=0.115.14" }]
+requires-dist = [
+    { name = "dependency-injector", specifier = ">=4.48.1" },
+    { name = "fastapi", extras = ["all"], specifier = ">=0.115.14" },
+    { name = "lagom", specifier = ">=2.7.7" },
+]
 
 [[package]]
 name = "annotated-types"
@@ -63,6 +69,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44", size = 27697 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335 },
+]
+
+[[package]]
+name = "dependency-injector"
+version = "4.48.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/26/7c/5062c4a7ffd32bf210ff55fab9d279a5beeae350fb09533d3536811e13b6/dependency_injector-4.48.1.tar.gz", hash = "sha256:1805185e4522effad6d5e348c255d27e80d3f8adc89701daf13d743367392978", size = 1100885 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/92/f9/c9b77652f724aece8856e281f7a71e5af544049b3c068df70c68868e43be/dependency_injector-4.48.1-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:a6f73011d532f3ea59689aad85c7999be6da3f30393041a745d5861cdcdc02e4", size = 1631637 },
+    { url = "https://files.pythonhosted.org/packages/ea/f0/d91c9cdabb1f2354762aca588757d1aa341f3cbccbc8636dd2c06acac10b/dependency_injector-4.48.1-cp38-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:ac09f508fa9aee06a036ebf3e3d3b2a210276aba1993e9993cec7f1fdc5fd89e", size = 1855944 },
+    { url = "https://files.pythonhosted.org/packages/57/ee/d69c4758a12653edbe6ee15c0bf4195981c9820650a1cfa762cbb838485b/dependency_injector-4.48.1-cp38-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:1b05a4a980096b53ad90a87965c5450183bfbb8bbe36615d7cea97537086d622", size = 1811989 },
+    { url = "https://files.pythonhosted.org/packages/cf/6d/d2a257402c8c3f7a9c61f1b8a0482ec4373f1ef7fdfe784a91e883506e3b/dependency_injector-4.48.1-cp38-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:0506e98440ee6c48fe660016d602961b1b3ecc0a8227838a2221048ed11e2fca", size = 1826408 },
+    { url = "https://files.pythonhosted.org/packages/65/f9/2a408d460eedb264f7ea919754c526c8f3a18c026496cacb7dd6960766d2/dependency_injector-4.48.1-cp38-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:1994622eae8917138626303b176cba4c74e625ba1e588cb09d673ca175d299a2", size = 1863948 },
+    { url = "https://files.pythonhosted.org/packages/6e/8a/2edaef77e725dd8b1a625c84cbccb0f445afe58277c7b243cbf58784826a/dependency_injector-4.48.1-cp38-abi3-win32.whl", hash = "sha256:58d4d81f92e3267c331f160cbbb517fd7644b95ee57a0d6e4b01f53a7e437a4a", size = 1516768 },
+    { url = "https://files.pythonhosted.org/packages/8c/41/4bf523af7e1b7f367499f8b8709e0e807e9a14c7d1674b0442d7f84403c8/dependency_injector-4.48.1-cp38-abi3-win_amd64.whl", hash = "sha256:572b22b7db9b103718ea52634b5ca1ef763278338310254334f4633a57c9f0e7", size = 1639850 },
 ]
 
 [[package]]
@@ -216,6 +237,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl", hash = "sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67", size = 134899 },
+]
+
+[[package]]
+name = "lagom"
+version = "2.7.7"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/c8/97b6a333d27c87a5c0973e40ed2cc51d0020166e940b48113b5a32fa52e1/lagom-2.7.7-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:36961c52a8debcc122ebc5caece4bdca7cf6c1cdf07159e17b84913259b386bd", size = 143912 },
+    { url = "https://files.pythonhosted.org/packages/87/ce/13bc7a3175d22abbf31729e0fc13a98a15e91bda3a750ac1fe8826edb242/lagom-2.7.7-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a446273396437774a3defff5a9baa4e0d88c9bad4e9cf318d98748005f5a6c57", size = 263228 },
+    { url = "https://files.pythonhosted.org/packages/f0/ef/032329df600bf41fa030b88898425643ae3965e747bf39e34123a05b2ea5/lagom-2.7.7-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:0d8f734641a75c4c7ce632f60fd6a65850a3a55d02938acc6d9348812741a167", size = 264973 },
+    { url = "https://files.pythonhosted.org/packages/3c/49/b50df0a63035a17e63cdccb14d2274acb0dda39a0f760c9e1679676fa570/lagom-2.7.7-cp313-cp313-win32.whl", hash = "sha256:348c324cac8ad79d670c38b8d1b4de36280032963abd5127e9abce5f396583f5", size = 109265 },
+    { url = "https://files.pythonhosted.org/packages/6d/78/a3901039ee8a3a490836234598aefa62f60a051d6418ff2603435b9df4e7/lagom-2.7.7-cp313-cp313-win_amd64.whl", hash = "sha256:f3ec6675496579c67057884b6b33cef56eb7867b6a98d500bbbe70cd7071f921", size = 119608 },
+    { url = "https://files.pythonhosted.org/packages/42/f1/300cdc600fd5a0a3e829db532d23758b0c4d4ccf031c1fec91245aded366/lagom-2.7.7-py3-none-any.whl", hash = "sha256:704b52f5b028eec84344fb14164c24cec4853c1b699b2cc008b356a7ebc9c8a9", size = 36924 },
 ]
 
 [[package]]
