@@ -7,5 +7,9 @@ requires-python = ">=3.13"
 dependencies = [
     "dependency-injector>=4.48.1",
     "fastapi[all]>=0.115.14",
+    "httpx>=0.28.1",
     "lagom>=2.7.7",
+    "loguru>=0.7.3",
+    "python-dotenv>=1.1.1",
+    "requests>=2.32.5",
 ]
